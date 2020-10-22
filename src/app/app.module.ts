@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { KendoUiModule } from './kendo-ui/kendo-ui.module';
 import { FlexmonsterModule } from './flexmonster/flexmonster.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,7 @@ import { FlexmonsterModule } from './flexmonster/flexmonster.module';
     LayoutModule,
     KendoUiModule,
     FlexmonsterModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

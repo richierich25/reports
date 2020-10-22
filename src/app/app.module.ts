@@ -19,7 +19,7 @@ import { FlexmonsterModule } from './flexmonster/flexmonster.module';
     LayoutModule,
     KendoUiModule,
     FlexmonsterModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

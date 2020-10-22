@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { aggregateBy, process } from '@progress/kendo-data-query';
-import { products } from './products';
+import { products } from '../products';
 
 @Component({
   selector: 'app-excel-export',

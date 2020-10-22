@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+/* Bootstrap Variables to override. Can also be placed in a separate file (_variables.scss) and then imported as `@import "variables"` */
+// $cus-primary-color: #3292a6;
+// $primary: $cus-primary-color !default;
+
+/* Importing Bootstrap SCSS */
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+/* Custom Style written below*/

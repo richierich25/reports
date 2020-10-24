@@ -1,38 +1,220 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col">
 
-      <button type="button" class="btn-primary btn-lg" (click)="excelexport.save()">Export To Excel</button>
+    <!-- Main Export -->
+    <div class="col-12">
 
-      <kendo-excelexport [data]="data" [group]="group" [collapsible]="true" fileName="Products.xlsx" #excelexport>
-        <kendo-excelexport-column field="ProductID" [locked]="true" title="Product ID" [width]="200">
-        </kendo-excelexport-column>
-        <kendo-excelexport-column field="ProductName" title="Product Name" [width]="350">
-        </kendo-excelexport-column>
-        <kendo-excelexport-column-group title="Availability" [headerCellOptions]="{ textAlign: 'center' }">
-          <kendo-excelexport-column field="UnitPrice" title="Unit Price" [width]="120"
-            [cellOptions]="{ format: '$#,##0.00' }" [groupFooterCellOptions]="{ textAlign: 'right' }"
-            [footerCellOptions]="{ wrap: true, textAlign: 'center' }">
-            <ng-template kendoExcelExportGroupFooterTemplate let-aggregates>
-              Sum: {{aggregates["UnitPrice"].sum | currency}}
+      <!-- Original Report -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="OriginalReport.save()">Original
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="OriginalReport.xlsx" #OriginalReport>
+
+          <kendo-excelexport-column *ngFor="let field of fields" [field]="field" [width]="200">
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report1 with Hidden -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report1WithHidden.save()">Hidden
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="Report1WithHidden.xlsx" #Report1WithHidden>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name" [width]="350">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="Category.CategoryName" title="Category" [hidden]="true">
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report2 with Locked -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report2WithLocked.save()">Locked
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="Report2WithLocked.xlsx" #Report2WithLocked>
+
+          <kendo-excelexport-column *ngFor="let field of fields" [field]="field" [locked]="field === 'ProductID'"
+            [width]="200">
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report3 with Group Header -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report3WithGroupHeader.save()">GroupHeader
+          Export</button>
+
+        <kendo-excelexport [data]="data3" [group]="group3" fileName="Report3WithGroupHeader.xlsx"
+          #Report3WithGroupHeader>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name" [width]="350">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="Category.CategoryName" [hidden]="true">
+            <ng-template kendoExcelExportGroupHeaderTemplate let-value="value">
+              Category: {{ value }}
             </ng-template>
-            <ng-template kendoExcelExportFooterTemplate let-column="column">
-              Total {{column.title}}: {{total["UnitPrice"].sum | currency}}
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report4 with Column Header -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report4WithColumnHeader.save()">ColumnHeader
+          Export</button>
+
+        <kendo-excelexport [data]="data4" [group]="group4" fileName="Report4WithColumnHeader.xlsx"
+          #Report4WithColumnHeader>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="UnitPrice" title="Price" [width]="200">
+            <ng-template kendoExcelExportGroupHeaderColumnTemplate let-aggregates="aggregates">
+              {{ aggregates.UnitPrice.sum }}
             </ng-template>
           </kendo-excelexport-column>
-          <kendo-excelexport-column field="UnitsOnOrder" title="Units On Order" [width]="120">
+          <kendo-excelexport-column field="Category.CategoryName" [hidden]="true">
+            <ng-template kendoExcelExportGroupHeaderTemplate let-value="value">
+              Category: {{ value }}
+            </ng-template>
           </kendo-excelexport-column>
-          <kendo-excelexport-column field="UnitsInStock" title="Units In Stock" [width]="120">
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report5 with Group Footer -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report5WithGroupFooter.save()">GroupFooter
+          Export</button>
+
+        <kendo-excelexport [data]="data4" [group]="group4" fileName="Report5WithGroupFooter.xlsx"
+          #Report5WithGroupFooter>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
           </kendo-excelexport-column>
-        </kendo-excelexport-column-group>
-        <kendo-excelexport-column field="Discontinued" width="120" [hidden]="true">
-          <ng-template kendoExcelExportGroupHeaderTemplate let-value="value">
-            Discontinued: {{value}}
-          </ng-template>
-        </kendo-excelexport-column>
-      </kendo-excelexport>
+          <kendo-excelexport-column field="ProductName" title="Product Name">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="UnitPrice" title="Unit Price">
+            <ng-template kendoExcelExportGroupFooterTemplate>
+              Sum: {{aggregates4["UnitPrice"].sum}}
+            </ng-template>
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report6 with Footer -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report6WithFooter.save()">Footer
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="Report6WithFooter.xlsx" #Report6WithFooter>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="UnitPrice" title="Unit Price">
+            <ng-template kendoExcelExportFooterTemplate>
+              Sum: {{total6["UnitPrice"].sum}}
+            </ng-template>
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Report7 with MultiColHeader -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-primary btn m-2" (click)="Report7WithMultiColHeader.save()">MultiColHeader
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="Report7WithMultiColHeader.xlsx" #Report7WithMultiColHeader>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column-group title="Availability">
+            <kendo-excelexport-column field="UnitPrice" title="Unit Price">
+            </kendo-excelexport-column>
+            <kendo-excelexport-column field="UnitsOnOrder" title="Units On Order">
+            </kendo-excelexport-column>
+            <kendo-excelexport-column field="UnitsInStock" title="Units In Stock">
+            </kendo-excelexport-column>
+          </kendo-excelexport-column-group>
+
+        </kendo-excelexport>
+      </div>
+
 
     </div>
+
+    <!-- Cell OPtions -->
+    <div class="col-12 mt-5 bg-light">
+      <!-- Original Report -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-success btn m-2" (click)="PaddingCellsReport.save()">PaddingCells
+          Export</button>
+
+        <kendo-excelexport [data]="data4" [group]="group4" fileName="PaddingCellsReport.xlsx"
+          [paddingCellOptions]="paddingCells" [headerPaddingCellOptions]="headerPaddingCells" #PaddingCellsReport>
+
+          <kendo-excelexport-column field="ProductID" title="Product ID" [headerCellOptions]="headerCells">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="ProductName" title="Product Name" [width]="350" [cellOptions]="cells">
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="Category.CategoryName" title="Category" [hidden]="true">
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+      <!-- Filter Report -->
+      <div class="d-inline-block">
+        <button type="button" class="btn-success btn m-2" (click)="FilterReport.save()">Filter
+          Export</button>
+
+        <kendo-excelexport [data]="originalData" fileName="FilterReport.xlsx" #FilterReport [filterable]="true">
+
+          <kendo-excelexport-column *ngFor="let field of fields" [field]="field" [width]="200">
+          </kendo-excelexport-column>
+
+        </kendo-excelexport>
+      </div>
+
+    </div>
+
+    <!-- Process Helpers -->
+    <div class="col-12 mt-5">
+      <!-- Combined Process-->
+      <button type="button" class="btn-danger btn m-2" (click)="logger('combined')">Log CombinedRes</button>
+      <!-- Sorting-->
+      <button type="button" class="btn-danger btn m-2" (click)="logger('sorting')">Log Sorting</button>
+      <!-- Grouping-->
+      <button type="button" class="btn-danger btn m-2" (click)="logger('grouing')">Log Grouping</button>
+      <!-- Filtering-->
+      <button type="button" class="btn-danger btn m-2" (click)="logger('filtering')">Log Filtering</button>
+      <!-- Aggregating-->
+      <button type="button" class="btn-danger btn m-2" (click)="logger('aggregating')">Log Aggregating</button>
+
+
+    </div>
+
+
+
   </div>
 
 </div>

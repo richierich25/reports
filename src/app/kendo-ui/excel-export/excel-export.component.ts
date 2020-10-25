@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { aggregateBy, process, orderBy, filterBy, groupBy  } from '@progress/kendo-data-query';
 import { products } from '../products';
+import jsonData from '../products.json';
 
 @Component({
   selector: 'app-excel-export',
@@ -14,6 +15,7 @@ export class ExcelExportComponent implements OnInit {
   // Report1 with Hidden State
   // Report2 with Locked
   public originalData: any[] = products;
+  // public originalData: any[] = jsonData;
   public fields: string[] = Object.keys(this.originalData[0]);
 
   // Report3 with Group Header
@@ -91,25 +93,27 @@ export class ExcelExportComponent implements OnInit {
   public resultSort = orderBy(this.originalData, [{ field: 'UnitPrice', dir: 'desc' }]);
 
   // Grouping
-  public resultGroup = groupBy(this.originalData, [{ field: 'category' }, { field: 'subcategory', dir: 'asc' }]);
+  public resultGroup = groupBy(this.originalData, [{ field: 'Discontinued' }, { field: 'Category.CategoryName', dir: 'asc' }]);
 
   // Filtering
   public resultFilter = filterBy(this.originalData, {
     logic: 'and',
     filters: [
-        { field: 'name', operator: 'startswith', value: 'p', ignoreCase: true },
-        { field: 'subcategory', operator: 'eq', value: 'Meat' },
+        { field: 'ProductName', operator: 'startswith', value: 'n', ignoreCase: true },
+        { field: 'Discontinued', operator: 'eq', value: false },
     ]
 });
 
   // Aggregating
   public resultAgg = aggregateBy(this.originalData, [
-    { field: 'productName', aggregate: 'count' },
-    { field: 'unitPrice', aggregate: 'sum' },
-    { field: 'unitPrice', aggregate: 'average' },
-    { field: 'unitsInStock', aggregate: 'min' },
-    { field: 'unitsInStock', aggregate: 'max' },
+    { field: 'ProductName', aggregate: 'count' },
+    { field: 'UnitPrice', aggregate: 'sum' },
+    { field: 'UnitPrice', aggregate: 'average' },
+    { field: 'UnitsInStock', aggregate: 'min' },
+    { field: 'UnitsInStock', aggregate: 'max' },
 ]);
+
+  public test: any[] = jsonData;
 
   logger(flag: string): void {
     switch (flag) {

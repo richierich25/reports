@@ -12,6 +12,7 @@ import { FlexmonsterComponent } from './flexmonster/flexmonster.component';
 import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { GridExcelExportComponent } from './kendo-ui/grid-excel-export/grid-excel-export.component';
 import { GridPdfExportComponent } from './kendo-ui/grid-pdf-export/grid-pdf-export.component';
+import { GridFormComponent } from './kendo-ui/grid-form/grid-form.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       },
       { path: 'excel-export', component: ExcelExportComponent },
       { path: 'grid', component: GridComponent },
+      { path: 'grid-form', component: GridFormComponent },
       { path: 'grid-excel-export', component: GridExcelExportComponent },
       { path: 'grid-pdf-export', component: GridPdfExportComponent },
     ],

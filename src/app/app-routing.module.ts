@@ -13,6 +13,14 @@ import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { GridExcelExportComponent } from './kendo-ui/grid-excel-export/grid-excel-export.component';
 import { GridPdfExportComponent } from './kendo-ui/grid-pdf-export/grid-pdf-export.component';
 import { GridFormComponent } from './kendo-ui/grid-form/grid-form.component';
+import { FlexGridComponent } from './flexmonster/flex-grid/flex-grid.component';
+import { PivotTableDemoComponent } from './flexmonster/examples/pivot-table-demo/pivot-table-demo.component';
+import { CallingEventsComponent } from './flexmonster/examples/calling-events/calling-events.component';
+import { UsingApiCallsComponent } from './flexmonster/examples/using-api-calls/using-api-calls.component';
+import { UpdatingDataComponent } from './flexmonster/examples/updating-data/updating-data.component';
+import { CustomizingToolbarComponent } from './flexmonster/examples/customizing-toolbar/customizing-toolbar.component';
+import { CustomizingGridComponent } from './flexmonster/examples/customizing-grid/customizing-grid.component';
+import { WithHighchartsComponent } from './flexmonster/examples/with-highcharts/with-highcharts.component';
 
 const routes: Routes = [
   {
@@ -45,6 +53,14 @@ const routes: Routes = [
         component: DashboardComponent,
         data: { message: 'These are Flexmonster Examples' },
       },
+      { path: 'flex-grid', component: FlexGridComponent },
+      { path: 'pivot-table-demo', component: PivotTableDemoComponent },
+      { path: 'calling-events', component: CallingEventsComponent },
+      { path: 'using-api-calls', component: UsingApiCallsComponent },
+      { path: 'updating-data', component: UpdatingDataComponent },
+      { path: 'customizing-toolbar', component: CustomizingToolbarComponent },
+      { path: 'customizing-grid', component: CustomizingGridComponent },
+      { path: 'with-highcharts', component: WithHighchartsComponent },
     ],
   },
   { path: '**', component: ErrorComponent },

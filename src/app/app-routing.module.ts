@@ -21,6 +21,8 @@ import { UpdatingDataComponent } from './flexmonster/examples/updating-data/upda
 import { CustomizingToolbarComponent } from './flexmonster/examples/customizing-toolbar/customizing-toolbar.component';
 import { CustomizingGridComponent } from './flexmonster/examples/customizing-grid/customizing-grid.component';
 import { WithHighchartsComponent } from './flexmonster/examples/with-highcharts/with-highcharts.component';
+import { WebdatarocksComponent } from './webdatarocks/webdatarocks.component';
+import { WbrPivotTableComponent } from './webdatarocks/wbr-pivot-table/wbr-pivot-table.component';
 
 const routes: Routes = [
   {
@@ -61,6 +63,18 @@ const routes: Routes = [
       { path: 'customizing-toolbar', component: CustomizingToolbarComponent },
       { path: 'customizing-grid', component: CustomizingGridComponent },
       { path: 'with-highcharts', component: WithHighchartsComponent },
+    ],
+  },
+  {
+    path: 'webdatarocks',
+    component: WebdatarocksComponent,
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+        data: { message: 'These are Webdatarocks Examples' },
+      },
+      { path: 'wbr-pivot-table', component: WbrPivotTableComponent },
     ],
   },
   { path: '**', component: ErrorComponent },

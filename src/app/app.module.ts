@@ -7,6 +7,7 @@ import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { KendoUiModule } from './kendo-ui/kendo-ui.module';
 import { FlexmonsterModule } from './flexmonster/flexmonster.module';
+import { WebdatarocksModule } from './webdatarocks/webdatarocks.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FlexmonsterModule } from './flexmonster/flexmonster.module';
     LayoutModule,
     KendoUiModule,
     FlexmonsterModule,
+    WebdatarocksModule,
     AppRoutingModule
   ],
   providers: [],

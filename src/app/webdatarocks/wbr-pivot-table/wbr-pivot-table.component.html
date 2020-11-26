@@ -1,0 +1,8 @@
+<app-wdr #pivot1 [toolbar]="true"
+          [width]="'100%'"
+          [height]="'95%'"
+          [customizeCell]="onCustomizeCell"
+          (ready)="onPivotReady($event)"
+          (reportcomplete)="onReportComplete()">
+    WebDataRocks will appear here
+</app-wdr>

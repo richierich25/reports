@@ -5,5 +5,8 @@
 /* Importing Bootstrap SCSS */
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-
 /* Custom Style written below*/
+html,
+body {
+  height: 100%;
+}

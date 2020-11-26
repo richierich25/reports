@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-webdatarocks',
   templateUrl: './webdatarocks.component.html',
   styleUrls: ['./webdatarocks.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class WebdatarocksComponent implements OnInit {
 
